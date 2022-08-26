@@ -17,67 +17,8 @@ app.get('/',function(req,res){
     res.json(response);
 });
 
-app.get('/notes',async function(req,res){
-    const notes=await note.find();
-    res.json(notes);
- });
-
-app.get('/notes/:userid',async function(req,res){
-    const notes=await note.find({userid:req.params.userid});
-    res.json(notes);
- });
-
-
-app.post('/note/add',async function(req,res){
-  const newNote=new Note(
-
-        {
-            id:req.body.id,
-            userid:req.body.userid,
-            title:req.body.title,
-            content:req.body.content
-        }
-    );
-
-    await newNote.save();
-
-const response={message:"New note created !!!"+`id:${req.body.id}`}
-    res.json(response);
-
-   
-
-    
-});
-
-
-
-
-app.post('/note/delete',async function(req,res){
-    
-      await note.deleteOne({id:req.body.id});
-  
-  const response={message:"Note Deleted !!!"+`id:${req.body.id}`}
-      res.json(response);
-  
-     
-  
-      
-  });
-
-
-
-  app.post('/note/delete',async function(req,res){
-    
-    await note.de
-
-const response={message:"Note Deleted !!!"+`id:${req.body.id}`}
-    res.json(response);
-
-   
-
-    
-});
-
+const noteRouter=require('./routes/note');
+app.use("/notes",noteRouter)
  
 });
 
