@@ -10,7 +10,8 @@ const bodyParser=require('body-parser');
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
-mongoose.connect('mongodb+srv://rouaboussetta:rouaboussetta@cluster0.gf7dh4m.mongodb.net/notesdb').then(function(){
+const mongoDBPath='mongodb+srv://rouaboussetta:rouaboussetta@cluster0.gf7dh4m.mongodb.net/notesdb';
+mongoose.connect(mongoDBPath).then(function(){
 //App Routes
 app.get('/',function(req,res){
     const response={message:"API Works !!"};
@@ -23,8 +24,11 @@ app.use("/notes",noteRouter)
 });
 
 //Starting the server on port 5000
-app.listen(5000,function(){
-    console.log('Starting the server on port 5000');
+
+const PORT=process.env.PORT||5000;
+
+app.listen(PORT,function(){
+    console.log('Starting the server on port '+PORT);
 
 });
  
