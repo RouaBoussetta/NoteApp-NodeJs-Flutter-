@@ -14,7 +14,7 @@ const mongoDBPath='mongodb+srv://rouaboussetta:rouaboussetta@cluster0.gf7dh4m.mo
 mongoose.connect(mongoDBPath).then(function(){
 //App Routes
 app.get('/',function(req,res){
-    const response={message:"API Works !!"};
+    const response={statusCode:res.statusCode ,message:"API Works !!"};
     res.json(response);
 });
 
